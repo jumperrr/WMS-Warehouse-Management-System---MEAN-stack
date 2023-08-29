@@ -1,0 +1,235 @@
+
+    [
+    {
+        "_id": "64ed062fe91ffc5f290f9ea6",
+        "name": "Big warehouse",
+        "__v": 0
+    },
+    {
+        "_id": "64ed190ad8abcbde4f1e92ef",
+        "name": "Green",
+        "warehouse": {
+            "_id": "64ed062fe91ffc5f290f9ea6",
+            "name": "Big warehouse",
+            "__v": 0
+        },
+        "__v": 0
+    },
+    [
+        {
+            "_id": "64ed1973d8abcbde4f1e92fc",
+            "name": "A101",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed1977d8abcbde4f1e92fe",
+            "name": "A102",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed197ad8abcbde4f1e9300",
+            "name": "A103",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed1987d8abcbde4f1e9302",
+            "name": "A211",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed1995d8abcbde4f1e9304",
+            "name": "B110",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed19a1d8abcbde4f1e9306",
+            "name": "B344",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed19aad8abcbde4f1e9308",
+            "name": "C128",
+            "area": {
+                "_id": "64ed190ad8abcbde4f1e92ef",
+                "name": "Green",
+                "warehouse": {
+                    "_id": "64ed062fe91ffc5f290f9ea6",
+                    "name": "Big warehouse",
+                    "__v": 0
+                },
+                "__v": 0
+            },
+            "__v": 0
+        }
+    ],
+    {
+        "_id": "64ed1b1828a6c7c94118268c",
+        "name": "Piece",
+        "shortcut": "pcs",
+        "__v": 0
+    },
+    {
+        "id": "64ed20abb8a1e5f71beb571c",
+        "firstname": "Jan",
+        "surname": "Nowak",
+        "email": "jan.nowak@mail.com",
+        "roles": [
+            "ROLE_SUPPLIER"
+        ],
+        "company": {
+            "_id": "64ed1a3628a6c7c941182684",
+            "name": "Best Supplier",
+            "address": "Wieliczka 21",
+            "phoneNumber": "565432232",
+            "products": [],
+            "__v": 0
+        }
+    },
+    {
+        "_id": "64ed13179e104f9f4b4370a0",
+        "name": "New",
+        "__v": 0
+    },
+    [
+        {
+            "_id": "64ed27bb443896304e9dd660",
+            "name": "Banana",
+            "unit": {
+                "_id": "64ed1ad928a6c7c94118268a",
+                "name": "Kilogram",
+                "shortcut": "kg"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed27cf443896304e9dd664",
+            "name": "Tomato",
+            "unit": {
+                "_id": "64ed1ad928a6c7c94118268a",
+                "name": "Kilogram",
+                "shortcut": "kg"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed27d5443896304e9dd666",
+            "name": "Potato",
+            "unit": {
+                "_id": "64ed1ad928a6c7c94118268a",
+                "name": "Kilogram",
+                "shortcut": "kg"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed27e4443896304e9dd668",
+            "name": "Apple",
+            "unit": {
+                "_id": "64ed1ad928a6c7c94118268a",
+                "name": "Kilogram",
+                "shortcut": "kg"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed2864443896304e9dd677",
+            "name": "Garlic",
+            "unit": {
+                "_id": "64ed1b1828a6c7c94118268c",
+                "name": "Piece",
+                "shortcut": "pcs"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed2875443896304e9dd67b",
+            "name": "Lemon",
+            "unit": {
+                "_id": "64ed1b1828a6c7c94118268c",
+                "name": "Piece",
+                "shortcut": "pcs"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed287b443896304e9dd67d",
+            "name": "Watermelon",
+            "unit": {
+                "_id": "64ed1b1828a6c7c94118268c",
+                "name": "Piece",
+                "shortcut": "pcs"
+            },
+            "__v": 0
+        },
+        {
+            "_id": "64ed2880443896304e9dd67f",
+            "name": "Corn",
+            "unit": {
+                "_id": "64ed1b1828a6c7c94118268c",
+                "name": "Piece",
+                "shortcut": "pcs"
+            },
+            "__v": 0
+        }
+    ]
+]
