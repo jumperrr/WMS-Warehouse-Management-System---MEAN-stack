@@ -18,7 +18,7 @@ exports.create = (req, res) => {
   status
     .save(status)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Status was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

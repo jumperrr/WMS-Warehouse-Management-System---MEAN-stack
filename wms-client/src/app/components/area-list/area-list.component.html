@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Areas</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/area/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-6">
+                            <span class="m-2">Name</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <span class="m-2">Warehouse</span>
+                                </div>
+                                <div class="col">
+                                    <select id="warehouseSelect" class="form-select" [(ngModel)]="filters.warehouse_id"
+                                        name="warehouseID" (ngModelChange)="filter()">
+                                        <option value="">-</option>
+                                        <option *ngFor="let warehouse of warehouses" value="{{warehouse._id}}">
+                                            {{ warehouse.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group m-4">
+                <div *ngFor="let area of filteredAreas" class="list-group-item list-group-item-action"
+                    routerLink="{{'/area/' + area._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-6">
+                            <span class="m-2">{{ area.name }}</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="m-2">{{ area.warehouse.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

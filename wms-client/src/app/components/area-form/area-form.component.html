@@ -1,0 +1,83 @@
+<div class="container mb-4">
+    <div class="row py-3">
+        <div class="col-12">
+            <button class="btn btn-secondary float-start" (click)="navigateTo('/arealist')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">keyboard_backspace</span>
+                    <span>Back</span>
+                </span>
+            </button>
+            <button *ngIf="areaID != 'new'" class="btn btn-danger float-end" (click)="openModal('confirmDeletion')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">delete_forever</span>
+                    <span>Delete</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <h4 class="col-12 text-center">Area</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-semibold">Name:</label>
+                    <input class="form-control" id="name" type="text" [(ngModel)]="areaForm.name" name="name"
+                        minlength="3" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="warehouse" class="form-label fw-semibold">Warehouse:</label>
+                    <select id="warehouse" class="form-select" [(ngModel)]="areaForm.warehouse" name="warehouseID">
+                        <option value="" disabled selected hidden>Select warehouse...</option>
+                        <option *ngFor="let warehouse of warehouses" value="{{warehouse._id}}">
+                            {{ warehouse.name }} </option>
+                    </select>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <button [disabled]="areaForm.name?.length == 0 || areaForm.name == null"
+                            class="btn btn-primary float-end" type="submit">
+                            <span *ngIf="areaID == 'new'">Create</span>
+                            <span *ngIf="areaID != 'new'">Update</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeletion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="confirmDeletionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h5>Delete area?</h5>
+                    </div>
+                    <div class="col-auto text-end">
+                        <span class="material-icons notranslate close-btn" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">close</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        This area will be permanently deleted.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-end">
+                        <button class="btn btn-sm btn-secondary mx-2" data-bs-dismiss="modal"
+                            aria-label="Close">Cancel</button>
+                        <button class="btn btn-sm btn-danger mx-2" (click)="deleteArea()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

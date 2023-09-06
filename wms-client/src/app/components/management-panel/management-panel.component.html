@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row g-4 mt-4">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('warehouselist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">warehouse</span>
+                        <span class="ms-2 align-middle">Warehouses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('arealist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">view_comfy</span>
+                        <span class="ms-2 align-middle">Areas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('storagelist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">crop_din</span>
+                        <span class="ms-2 align-middle">Storages</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('customerlist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">shopping_cart</span>
+                        <span class="ms-2 align-middle">Customers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('supplierlist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">local_shipping</span>
+                        <span class="ms-2 align-middle">Suppliers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('productlist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">view_in_ar</span>
+                        <span class="ms-2 align-middle">Products</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('unitlist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">scale</span>
+                        <span class="ms-2 align-middle">Units</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('statuslist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">published_with_changes</span>
+                        <span class="ms-2 align-middle">Statuses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body" (click)="navigateTo('userlist')"
+                    [ngClass]="helperService.darkMode ? 'link-hover-dark-mode' : 'link-hover-light-mode'">
+                    <div class="card-title fs-2">
+                        <span class="material-icons-round notranslate fs-1 align-middle">groups</span>
+                        <span class="ms-2 align-middle">Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

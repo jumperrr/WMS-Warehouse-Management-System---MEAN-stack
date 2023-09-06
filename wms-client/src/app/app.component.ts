@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HelperService } from './services/helper.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wms-client';
+
+  constructor(public helperService: HelperService) {}
 }

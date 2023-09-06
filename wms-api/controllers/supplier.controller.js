@@ -21,7 +21,7 @@ exports.create = (req, res) => {
   if (req.body.products) {
     req.body.products.forEach((element) => {
       supplier.products.push({
-        product: element.product_id,
+        product: element.product,
       });
     });
   }
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
   supplier
     .save(supplier)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Supplier was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -43,6 +43,7 @@ exports.create = (req, res) => {
 // Retrieve all Supplier from the database.
 exports.findAll = (req, res) => {
   const condition = req.query;
+
 
   Supplier.find(condition)
     .populate({

@@ -74,9 +74,36 @@ isSupplier = (req, res, next) => {
   })
 };
 
+isUser = (req, res, next) => {
+  User.findById(req.userId).exec().then( (user) => {
+    Role.find({
+      _id: { $in: user.roles },
+    })
+      .then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "user") {
+            next();
+            return;
+          }
+        }
+
+        res.status(403).send({ message: "Require User Role!" });
+        return;
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err });
+        return;
+      });
+  }).catch((err) => {
+    res.status(500).send({ message: err });
+    return;
+  })
+};
+
 const authJwt = {
   verifyToken,
   isAdmin,
   isSupplier,
+  isUser
 };
 module.exports = authJwt;

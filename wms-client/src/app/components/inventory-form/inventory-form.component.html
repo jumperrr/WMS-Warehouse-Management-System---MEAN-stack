@@ -1,0 +1,42 @@
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form (ngSubmit)="addStorageProduct()">
+                <div class="row">
+                    <h4 class="col-12 text-center">Receive Product</h4>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="product_id" class="form-label fw-semibold">Product:</label>
+                    <select id="product_id" class="form-select" [(ngModel)]="storageProductForm.product_id" name="product_id">
+                        <option value="" disabled selected hidden>Select unit...</option>
+                        <option *ngFor="let product of products" value="{{product._id}}">
+                            {{ product.name }} </option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="storage_id" class="form-label fw-semibold">Storage:</label>
+                    <select id="storage_id" class="form-select" [(ngModel)]="storageProductForm.storage_id" name="storage_id">
+                        <option value="" disabled selected hidden>Select unit...</option>
+                        <option *ngFor="let storage of storages" value="{{storage._id}}">
+                            {{ storage.area.warehouse.name + " > " + storage.area.name + " > " +storage.name  }} </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label fw-semibold">Quantity:</label>
+                    <input class="form-control" id="quantity" type="number" [(ngModel)]="storageProductForm.quantity" name="quantity" required>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <button [disabled]="storageProductForm.quantity == null || storageProductForm.product_id == null || storageProductForm.storage_id == null"
+                            class="btn btn-primary float-end" type="submit">
+                            <span>Add</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

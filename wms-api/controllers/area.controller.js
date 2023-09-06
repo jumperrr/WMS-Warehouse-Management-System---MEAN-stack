@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   area
     .save(area)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Area was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -80,7 +80,7 @@ exports.update = (req, res) => {
         res.status(404).send({
           message: `Cannot update Area with id=${id}. Maybe Area was not found!`,
         });
-      } else res.send({ message: "Area was updated successfully.", data });
+      } else res.send({ message: "Area was updated successfully", data });
     })
     .catch((err) => {
       res.status(500).send({

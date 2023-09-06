@@ -1,0 +1,140 @@
+<div class="container mb-4">
+    <div class="row py-3">
+        <div class="col-12">
+            <button class="btn btn-secondary float-start" (click)="navigateTo('/supplierlist')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">keyboard_backspace</span>
+                    <span>Back</span>
+                </span>
+            </button>
+            <button *ngIf="supplierID != 'new'" class="btn btn-danger float-end" (click)="openModal('confirmDeletion')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">delete_forever</span>
+                    <span>Delete</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <h4 class="col-12 text-center">Supplier</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-semibold">Name:</label>
+                    <input class="form-control" id="name" type="text" [(ngModel)]="supplierForm.name" name="name"
+                        minlength="3" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label fw-semibold">Address:</label>
+                    <input class="form-control" id="address" type="text" [(ngModel)]="supplierForm.address"
+                        name="address">
+                </div>
+                <div class="mb-3">
+                    <label for="nip" class="form-label fw-semibold">NIP:</label>
+                    <input class="form-control" id="nip" type="text" [(ngModel)]="supplierForm.nip" name="nip">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Email:</label>
+                    <input class="form-control" id="email" type="email" [(ngModel)]="supplierForm.email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label fw-semibold">Phone number:</label>
+                    <input class="form-control" id="phoneNumber" type="text" [(ngModel)]="supplierForm.phoneNumber"
+                        name="phoneNumber">
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="products" class="form-label fw-semibold">Products:</label>
+                            <div class="input-group">
+                                <select id="products" class="form-select" [(ngModel)]="productTemp" name="productTemp">
+                                    <option value="" disabled selected hidden>Select product to add...</option>
+                                    <option *ngFor="let product of allProducts" value="{{product._id}}">
+                                        {{ product.name }} {{ product.unit.shortcut }}</option>
+                                </select>
+                                <button type="button" class="input-group-text btn btn-outline-primary"
+                                    (click)="addProductToSupplier(productTemp)" [disabled]="productTemp.length == 0">
+                                    <span class="d-flex justify-content-center align-items-center">
+                                        <span class="material-icons-round notranslate">add_circle_outline</span>
+                                        <span class="ms-2">Add</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="supplierProducts?.length != 0" class="list-group mb-3">
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8 col-md-8 fw-semibold">
+                                        Name
+                                    </div>
+                                    <div class="d-none d-md-block col-md-3 fw-semibold">
+                                        Unit
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                            <div *ngFor="let product of supplierProducts, let i = index"
+                                class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-8 col-md-8">
+                                        {{product.product.name}}
+                                    </div>
+                                    <div class="d-none d-md-block col-md-3">
+                                        {{product.product.unit.shortcut}}
+                                    </div>
+                                    <div class="col-1">
+                                        <span class="material-icons-round notranslate text-danger cursor-pointer"
+                                            (click)="deleteProduct(i)">delete_forever</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <button [disabled]="supplierForm.name?.length == 0 || supplierForm.name == null"
+                            class="btn btn-primary float-end" type="submit">
+                            <span *ngIf="supplierID == 'new'">Create</span>
+                            <span *ngIf="supplierID != 'new'">Update</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeletion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="confirmDeletionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h5>Delete supplier?</h5>
+                    </div>
+                    <div class="col-auto text-end">
+                        <span class="material-icons notranslate close-btn" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">close</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        This supplier will be permanently deleted.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-end">
+                        <button class="btn btn-sm btn-secondary mx-2" data-bs-dismiss="modal"
+                            aria-label="Close">Cancel</button>
+                        <button class="btn btn-sm btn-danger mx-2" (click)="deleteSupplier()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

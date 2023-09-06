@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   unit
     .save(unit)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Unit was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

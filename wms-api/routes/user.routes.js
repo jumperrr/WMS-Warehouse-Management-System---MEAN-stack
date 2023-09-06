@@ -1,25 +1,20 @@
 const { authJwt } = require("../middlewares");
-const controller = require("../controllers/user.controller");
+const user = require("../controllers/user.controller");
 
 module.exports = function (app) {
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
-    next();
-  });
+  var router = require("express").Router();
 
-  app.get("/api/users/all", controller.allAccess);
+  // Retrieve all users
+  router.get("/", [authJwt.verifyToken, authJwt.isAdmin], user.findAll);
+  
+  // Retrieve a single user with id
+  router.get("/:id", [authJwt.verifyToken, authJwt.isAdmin], user.findOne);
 
-  app.get("/api/users/user", [authJwt.verifyToken], controller.userBoard);
+  // Update a user with id
+  router.put("/:id", [authJwt.verifyToken, authJwt.isAdmin], user.update);
 
-  app.get(
-    "/api/users/supplier",
-    [authJwt.verifyToken, authJwt.isSupplier],
-    controller.supplierBoard
-  );
+  // Delete a user with id
+  router.delete("/:id", [authJwt.verifyToken, authJwt.isAdmin], user.delete);
 
-  app.get(
-    "/api/users/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
-  );
+  app.use("/api/user", router);
 };

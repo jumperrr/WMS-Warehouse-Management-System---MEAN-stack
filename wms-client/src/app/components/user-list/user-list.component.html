@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Users</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/user/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-3">
+                            <span class="m-2">Name</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">Email</span>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <span class="m-2">Role</span>
+                                </div>
+                                <div class="col-auto">
+                                    <select id="roleSelect" class="form-select" [(ngModel)]="filters.role" name="role"
+                                        (ngModelChange)="filter()">
+                                        <option value="">-</option>
+                                        <option value="user">User</option>
+                                        <option value="supplier">Supplier</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">Company</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group mx-4 mb-4">
+                <div *ngFor="let user of usersFiltered" class="list-group-item list-group-item-action"
+                    routerLink="{{'/user/' + user._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-3">
+                            <span class="m-2">{{ user.firstname + " " + user.surname }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">{{ user.email }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">{{ user.roles[0].name }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">{{ user.company?.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

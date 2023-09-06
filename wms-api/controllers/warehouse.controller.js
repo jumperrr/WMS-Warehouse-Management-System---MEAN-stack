@@ -18,7 +18,7 @@ exports.create = (req, res) => {
     warehouse
       .save(warehouse)
       .then((data) => {
-        res.send(data);
+        res.send({ message: "Warehouse was added successfully.", data });
       })
       .catch((err) => {
         res.status(500).send({

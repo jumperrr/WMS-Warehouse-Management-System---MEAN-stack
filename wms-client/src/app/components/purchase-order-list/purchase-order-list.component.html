@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Products</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/purchaseorder/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-3">
+                            <span class="m-2">Supplier</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">Product</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">Quantity</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">Status</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">Delivery Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group mx-4 mb-4">
+                <div *ngFor="let order of orders" class="list-group-item list-group-item-action"
+                    routerLink="{{'/purchaseorder/' + order._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-3">
+                            <span class="m-2">{{ order.supplier.name }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span *ngFor="let product of order.products">
+                                <span class="m-2">{{ product.product?.name }}</span>
+                            </span>
+                        </div>
+                        <div class="col-2">
+                            <span *ngFor="let product of order.products">
+                                <span class="m-2">{{ product.quantity }}</span>
+                            </span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">{{ order.status?.name }}</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">{{ order.deliveryDate | date: 'shortDate' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

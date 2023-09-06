@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Storages</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/storage/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-4">
+                            <span class="m-2">Name</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <span class="m-2">Area</span>
+                                </div>
+                                <div class="col">
+                                    <select id="areaSelect" class="form-select" [(ngModel)]="filters.area_id"
+                                        name="areaID" (ngModelChange)="filter()">
+                                        <option value="">-</option>
+                                        <option *ngFor="let area of filteredAreas" value="{{area._id}}">
+                                            {{ area.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <span class="m-2">Warehouse</span>
+                                </div>
+                                <div class="col">
+                                    <select id="warehouseSelect" class="form-select" [(ngModel)]="filters.warehouse_id"
+                                        name="warehouseID" (ngModelChange)="filterAreas()">
+                                        <option value="">-</option>
+                                        <option *ngFor="let warehouse of warehouses" value="{{warehouse._id}}">
+                                            {{ warehouse.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group m-4">
+                <div *ngFor="let storage of filteredStorages" class="list-group-item list-group-item-action"
+                    routerLink="{{'/storage/' + storage._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-4">
+                            <span class="m-2">{{ storage.name }}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">{{ storage.area.name }}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">{{ storage.area.warehouse.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

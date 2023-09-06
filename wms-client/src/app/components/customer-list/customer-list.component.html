@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Customers</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/customer/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-4">
+                            <span class="m-2">Name</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">Address</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">DUNS</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">NIP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group mx-4 mb-4">
+                <div *ngFor="let customer of customers" class="list-group-item list-group-item-action"
+                    routerLink="{{'/customer/' + customer._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-4">
+                            <span class="m-2 fw-semibold">{{ customer.name }}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">{{ customer.address }}</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">{{ customer.duns }}</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-2">{{ customer.nip }}</span>
+                        </div>
+                    </div>
+                    <div class="row cursor-pointer mt-2">
+                        <div class="col-12">
+                            <span class="m-2">Email: {{ customer.email }}</span>
+                        </div>
+                        <div class="col-12">
+                            <span class="m-2">Phone: {{ customer.phoneNumber }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

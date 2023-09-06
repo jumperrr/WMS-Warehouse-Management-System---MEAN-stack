@@ -1,0 +1,31 @@
+.form-switch .form-check-input {
+    width: 3em !important;
+    height: 1.5em !important;
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    transition: 0.4s;
+}
+
+.form-switch .form-check-input {
+    background-image: url("./../../../assets/images/sun.png") !important;
+}
+
+.form-switch .form-check-input:checked {
+    background-image: url("./../../../assets/images/moon.png") !important;
+    background-color: black;
+    border-color: rgba(236, 236, 236, 0.458);
+}
+
+.form-switch .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(46, 46, 46, 0.101);
+    border-color: #4c4c4c9d;
+}
+
+.form-switch .form-check-input:focus:checked {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.101);
+    border-color: rgba(236, 236, 236, 0.458);
+}
+
+.form-check .form-check-input {
+    float: none;
+}

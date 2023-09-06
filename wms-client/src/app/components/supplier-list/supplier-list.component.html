@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Suppliers</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/supplier/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-5">
+                            <span class="m-2">Name</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">Address</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">Phone number</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group m-4">
+                <div *ngFor="let supplier of suppliers" class="list-group-item list-group-item-action"
+                    routerLink="{{'/supplier/' + supplier._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-5">
+                            <span class="m-2">{{ supplier.name }}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="m-2">{{ supplier.address }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span class="m-2">{{ supplier.phoneNumber }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

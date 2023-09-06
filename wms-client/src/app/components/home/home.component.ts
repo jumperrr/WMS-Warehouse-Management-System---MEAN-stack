@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(public storageService: StorageService) {}
 }

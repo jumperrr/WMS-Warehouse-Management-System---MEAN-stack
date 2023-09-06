@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   storage
     .save(storage)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Storage was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   product
     .save(product)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Product was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

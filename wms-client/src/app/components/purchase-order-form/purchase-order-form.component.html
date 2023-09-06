@@ -1,0 +1,73 @@
+<div class="container mb-4">
+    <div class="row py-3">
+        <div class="col-12">
+            <button class="btn btn-secondary float-start" (click)="navigateTo('/purchaseorderlist')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">keyboard_backspace</span>
+                    <span>Back</span>
+                </span>
+            </button>
+            <button *ngIf="orderID != 'new'" class="btn btn-danger float-end" (click)="deletePurchaseOrder()">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">delete_forever</span>
+                    <span>Delete</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <h4 class="col-12 text-center">Purchase Order</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="product" class="form-label fw-semibold">Product:</label>
+                    <select id="product" class="form-select" [(ngModel)]="orderForm.products[0].product" name="product"
+                        (ngModelChange)="filterSuppliers()">
+                        <option value="" disabled selected hidden>Select product...</option>
+                        <option *ngFor="let product of products" value="{{product._id}}">
+                            {{ product.name + " " + product.unit.name }} </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier" class="form-label fw-semibold">Supplier:</label>
+                    <select id="supplier" class="form-select" [(ngModel)]="orderForm.supplier" name="supplier">
+                        <option value="" disabled selected hidden>Select supplier...</option>
+                        <option *ngIf="suppliersFiltered.length == 0" value="" disabled>No supplier for this product
+                        </option>
+                        <option *ngFor="let supplier of suppliersFiltered" value="{{supplier._id}}">
+                            {{ supplier.name }} </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label fw-semibold">Quantity:</label>
+                    <input class="form-control" id="quantity" type="number" [(ngModel)]="orderForm.products[0].quantity"
+                        name="quantity">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label fw-semibold">Date:</label>
+                    <input class="form-control" id="date" type="date" [(ngModel)]="orderForm.deliveryDate" name="date">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label fw-semibold">Status:</label>
+                    <select id="status" class="form-select" [(ngModel)]="orderForm.status" name="status">
+                        <option value="" disabled selected hidden>Select status...</option>
+                        <option *ngFor="let status of statuses" value="{{status._id}}">
+                            {{ status.name }} </option>
+                    </select>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <button
+                            [disabled]="orderForm.supplier?.length == 0 || orderForm.supplier == null || orderForm.products?.length == 0 || orderForm.products == null"
+                            class="btn btn-primary float-end" type="submit">
+                            <span *ngIf="orderID == 'new'">Create</span>
+                            <span *ngIf="orderID != 'new'">Update</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

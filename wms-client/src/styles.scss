@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import "material-icons/iconfont/material-icons.css";
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.link-hover-light-mode:hover {
+    color: rgb(27, 108, 237);
+}
+
+.link-hover-dark-mode:hover {
+    color: rgb(74, 144, 255);
+}

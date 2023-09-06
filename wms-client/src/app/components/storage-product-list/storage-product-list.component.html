@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="list-group mt-4 mx-4 border">
+                <div class="list-group-item fw-semibold border">
+                    <div class="row">
+                        <div class="col-2">
+                            Storage
+                        </div>
+                        <div class="col-2">
+                            Area
+                        </div>
+                        <div class="col-3">
+                            Warehouse
+                        </div>
+                        <div class="col-3">
+                            Product
+                        </div>
+                        <div class="col-2">
+                            Quantity
+                        </div>
+                    </div>
+                </div>
+                <div *ngFor="let storageProduct of storageProducts" class="list-group-item list-group-item-action">
+                    <div class="row cursor-pointer"  routerLink="{{'/storageproductform/' + storageProduct._id}}">
+                        <div class="col-2">
+                            {{ storageProduct.storage.name }}
+                        </div>
+                        <div class="col-2">
+                            {{ storageProduct.storage.area.name }}
+                        </div>
+                        <div class="col-3">
+                            {{ storageProduct.storage.area.warehouse.name }}
+                        </div>
+                        <div class="col-3">
+                            {{ storageProduct.product.name }}
+                        </div>
+                        <div class="col-2">
+                            {{ storageProduct.quantity }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

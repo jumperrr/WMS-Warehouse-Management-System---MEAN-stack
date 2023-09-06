@@ -22,6 +22,7 @@ exports.signup = (req, res) => {
     .then((user) => {
       //if succeded do this block of code
       if (req.body.roles) {
+        console.log(req.body.roles);
         Role.find({
           name: { $in: req.body.roles },
         })
@@ -30,7 +31,7 @@ exports.signup = (req, res) => {
             user
               .save()
               .then(() => {
-                res.send({ message: "User was registered successfully!" });
+                res.send({ message: "User was registered successfully!", user });
               })
               .catch((err) => {
                 res.status(500).send({ message: err });
@@ -42,26 +43,25 @@ exports.signup = (req, res) => {
             return;
           });
       } else {
-        Role.findOne({ name: "user" }, (err, role) => {
-          if (err) {
+        Role.findOne({ name: "user" })
+        .then((role) => {
+          user.roles = [role._id];
+          user.save().then(() => {
+            res.send({ message: "User was registered successfully!", user });
+          }).catch((err) => {
             res.status(500).send({ message: err });
             return;
-          }
-
-          user.roles = [role._id];
-          user.save((err) => {
-            if (err) {
-              res.status(500).send({ message: err });
-              return;
-            }
-
-            res.send({ message: "User was registered successfully!" });
-          });
-        });
+          })
+        })
+        .catch((err) => {
+          res.status(500).send({ message: err });
+          return;
+        })
       }
     })
     .catch((err) => {
       //catch error
+      console.log(err);
       res.status(500).send({ message: err });
       return;
     });
@@ -125,27 +125,3 @@ exports.signout = async (req, res) => {
     this.next(err);
   }
 };
-
-/* exports.update = (req, res) => {
-  if (!req.body) {
-    return res.status(400).send({
-      message: "Data to update can not be empty!",
-    });
-  }
-
-  const id = req.params.id;
-
-  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update User with id=${id}. Maybe User was not found!`,
-        });
-      } else res.send({ message: "User was updated successfully.", data });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating User with id=" + id,
-      });
-    });
-}; */

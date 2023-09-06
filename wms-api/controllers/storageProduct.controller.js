@@ -4,6 +4,7 @@ const StorageProduct = db.storageProduct;
 // Create and Save a new StorageProduct
 exports.create = (req, res) => {
   // Validate request
+  console.log(req.body);
   if (!req.body.quantity || !req.body.product_id || !req.body.storage_id) {
     res.status(400).send({ message: "Required data is missing!" });
     return;
@@ -20,7 +21,7 @@ exports.create = (req, res) => {
   storageProduct
     .save(storageProduct)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "The product has been stored successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -54,7 +55,14 @@ exports.findAll = (req, res) => {
       },
     })
     .then((data) => {
-      res.send(data);
+      let totalQuantity = 0;
+
+      if (condition.product && data.length != 0) {
+        data.forEach((d) => {
+          totalQuantity += d.quantity;
+        })
+      }
+      res.send({data, totalQuantity});
     })
     .catch((err) => {
       res.status(500).send({

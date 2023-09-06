@@ -23,7 +23,7 @@ exports.create = (req, res) => {
   customer
     .save(customer)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Customer was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

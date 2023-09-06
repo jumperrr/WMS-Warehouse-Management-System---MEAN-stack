@@ -1,0 +1,20 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.card-body {
+    @extend .cursor-pointer;
+}
+
+.link-hover-light-mode:hover {
+    @extend .card-hover-shadow;
+}
+
+.link-hover-dark-mode:hover {
+    @extend .card-hover-shadow;
+}
+
+.card-hover-shadow:hover {
+    box-shadow: 0 15px 10px -10px rgba(209, 209, 209, 0.5);
+    transition: all 0.3s ease;
+}

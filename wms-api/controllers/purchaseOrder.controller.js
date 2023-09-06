@@ -3,11 +3,13 @@ const PurchaseOrder = db.purchaseOrder;
 
 // Create and Save a new PurchaseOrder
 exports.create = (req, res) => {
+  console.log(req.body);
   // Validate request
   if (!req.body.supplier_id || !req.body.products || !req.body.deliveryDate) {
     res.status(400).send({ message: "Required data is missing!" });
     return;
   }
+
 
   // Create a PurchaseOrder
   const purchaseOrder = new PurchaseOrder({
@@ -18,7 +20,7 @@ exports.create = (req, res) => {
   });
   req.body.products.forEach((element) => {
     purchaseOrder.products.push({
-      product: element.product_id,
+      product: element.product,
       quantity: element.quantity,
     });
   });
@@ -27,7 +29,7 @@ exports.create = (req, res) => {
   purchaseOrder
     .save(purchaseOrder)
     .then((data) => {
-      res.send(data);
+      res.send({ message: "Purchase order was added successfully.", data });
     })
     .catch((err) => {
       res.status(500).send({

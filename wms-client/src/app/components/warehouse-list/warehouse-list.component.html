@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row my-4">
+        <h4 class="col-6">Warehouses</h4>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary float-end" routerLink="/warehouse/new">
+                <span class="d-flex justify-content-center align-items-center">
+                    <span class="material-icons-round notranslate">add_circle_outline</span>
+                    <span class="ms-2">Add</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card body">
+            <div class="list-group mt-4 mx-4 border border-0">
+                <div class="list-group-item fw-semibold border border-0">
+                    <div class="row fs-5">
+                        <div class="col-12">
+                            <span class="m-2">Name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group mx-4 mb-4">
+                <div *ngFor="let warehouse of warehouses" class="list-group-item list-group-item-action"
+                    routerLink="{{'/warehouse/' + warehouse._id}}">
+                    <div class="row cursor-pointer">
+                        <div class="col-12">
+                            <span class="m-2">{{ warehouse.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

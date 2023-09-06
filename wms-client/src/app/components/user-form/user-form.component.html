@@ -1,0 +1,124 @@
+<div class="container mb-4">
+    <div class="row py-3">
+        <div class="col-12">
+            <button class="btn btn-secondary float-start" (click)="navigateTo('/userlist')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">keyboard_backspace</span>
+                    <span>Back</span>
+                </span>
+            </button>
+            <button *ngIf="userID != 'new'" class="btn btn-danger float-end" (click)="openModal('confirmDeletion')">
+                <span class="d-flex justify-lg-content-center align-items-center">
+                    <span class="material-icons-round notranslate">delete_forever</span>
+                    <span>Delete</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="row">
+                    <h4 class="col-12 text-center">User</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label fw-semibold">Firstname:</label>
+                    <input class="form-control" id="firstname" type="text" [(ngModel)]="userForm.firstname"
+                        name="firstname" required minlength="3" maxlength="20" #firstname="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && firstname.errors }" />
+                    <div class="invalid-feedback" *ngIf="firstname.errors && f.submitted">
+                        <div *ngIf="firstname.errors['required']">Username is required</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="surname" class="form-label fw-semibold">Surname:</label>
+                    <input class="form-control" id="surname" type="text" [(ngModel)]="userForm.surname" name="surname"
+                        minlength="3" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Email:</label>
+                    <input class="form-control" id="email" type="email" [(ngModel)]="userForm.email" name="email"
+                        required>
+                </div>
+
+                <div *ngIf="userID == 'new'" class="mb-3">
+                    <label for="password" class="form-label fw-semibold">Password:</label>
+                    <input class="form-control" id="password" type="password" [(ngModel)]="userPassword"
+                        name="password" required minlength="6" #password="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+                    <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="userID != 'new'" class="mb-3">
+                    <label for="password" class="form-label fw-semibold">New password:</label>
+                    <input class="form-control" id="password" type="password" [(ngModel)]="userPassword"
+                        name="password">
+                </div>
+
+                <div class="mb-3">
+                    <label for="role" class="form-label fw-semibold">Role:</label>
+                    <select *ngIf="userID == 'new'" class="form-select" id="role" aria-label="Select role" [(ngModel)]="role" name="roles">
+                      <option *ngFor="let role of rolesToSelect" value="{{role.value}}">{{ role.name }}</option>
+                    </select>
+                    <input *ngIf="userID != 'new'" class="form-control" id="role" type="text" [value]="role" name="role" disabled>
+                  </div>
+            
+                  <div *ngIf="role == 'supplier'" class="mb-3">
+                    <label for="supplier" class="form-label fw-semibold">Supplier:</label>
+                    <select class="form-select" id="supplier" aria-label="Select supplier" [(ngModel)]="supplier_id" name="supplier">
+                      <option *ngFor="let supplier of suppliers" value="{{supplier._id}}">{{ supplier.name }}</option>
+                    </select>
+                  </div>
+
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <button [disabled]="userForm.email?.length == 0 || userForm.email == null"
+                            class="btn btn-primary float-end" type="submit">
+                            <span *ngIf="userID == 'new'">Create</span>
+                            <span *ngIf="userID != 'new'">Update</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeletion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="confirmDeletionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <h5>Delete user?</h5>
+                    </div>
+                    <div class="col-auto text-end">
+                        <span class="material-icons notranslate close-btn" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">close</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        This user will be permanently deleted.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-end">
+                        <button class="btn btn-sm btn-secondary mx-2" data-bs-dismiss="modal"
+                            aria-label="Close">Cancel</button>
+                        <button class="btn btn-sm btn-danger mx-2" (click)="deleteUser()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
